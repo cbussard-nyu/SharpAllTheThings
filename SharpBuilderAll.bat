@@ -75,5 +75,5 @@ git clone https://github.com/P1CKLES/SharpBox Exfil/SharpBox
 git clone https://github.com/outflanknl/Zipper Exfil/Zipper
 
 cmd.exe /c ..\BuildAllTheThings.bat
-powershell -exec bypass -win hidden -command "Get-ChildItem -Recurse -filter *.exe | %{ $_.FullName }  | select-string
-bin | %{ Copy-Item -Path $_ c:\sharp\Binaries }"
+powershell -exec bypass -command "Get-ChildItem -Recurse -filter *.exe | %%{ $_.FullName }  | select-string bin | %%{ Copy-Item -Path $_ c:\sharp\Binaries }"
+
