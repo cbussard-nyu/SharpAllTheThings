@@ -2,39 +2,20 @@
 The idea is to collect all the C# projects that are Sharp{Word} that can be used in Cobalt Strike as execute assembly command.
 Credit the name to the amazing PayloadAllTheThings github repo (https://github.com/swisskyrepo/PayloadsAllTheThings)
 
-## Pull All Repos down via Unix or WSL (Scripts written by [ZephrFish](https://twitter.com/ZephrFish))
-```
-./SharpBuilderAll.sh
-```
-The script will make the following directories and pull a copy of each project down to the respective folder:
-```
-Execution
-Persistence
-PrivEsc
-DefenseEvasion
-CredAccess
-Discovery
-LateralMovement
-Exfil
-```
+## Build locally (Credit to [ZephrFish](https://twitter.com/ZephrFish))
+You can use [ZephrFish](https://twitter.com/ZephrFish) script to download the scripts and build locally, this can be done by following these instructions:
+https://github.com/N7WEra/SharpAllTheThings/blob/master/BuildAllTheThings/README.md
 
-Once all the repos are pulled down time to build them all, note: this assumes devbuild.exe is in the following path `C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe`.
+## Precompiled binaries
+You can find nightly builds of most of the tools in this awsome repo by [Flangvik](https://twitter.com/Flangvik)
 
-Thanks to https://twitter.com/BufferOfStyx for help on the bash trickery to get the paths all looking good, if you're interested `for i in $(find . -name 2>/dev/null *.sln | sed 's/\//\\/g'); do echo "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\devenv.exe" $i /Build "Release|x64"; done`, this can be altered for your path to devenv.exe.
-
-The builder script will take the bat file as an input and assumes it is in the same directory(BuildAllTheThings.bat)
-
-```
-BuildAllTheThings.bat
-```
-
-NOTE: this will error for some solutions and still a work in progress! 
+https://github.com/Flangvik/SharpCollection
 
 ### Execution
 1. SharpWMI - implementation of various WMI functionality. This includes local/remote WMI queries, remote WMI process creation through win32_process, and remote execution of arbitrary VBS through WMI event subscriptions. Alternate credentials are also supported for remote methods.
    * Credit - https://twitter.com/harmj0y
    * Link - https://github.com/GhostPack/SharpWMI
-2. SharpGPOAbuse - take advantage of a user's edit rights on a Group Policy Object (GPO) in order to compromise the objects that are controlled by that GPO.
+2. SharpGPOAbuse - take advantage of a user's edit rights on a Policy Object (GPO) in order to compromise the objects that are controlled by that GPO.
    * Credit - https://twitter.com/pkb1s
    * Link - https://github.com/FSecureLABS/SharpGPOAbuse
 
@@ -62,6 +43,9 @@ NOTE: this will error for some solutions and still a work in progress!
 5. SweetPotato - Local Service to SYSTEM privilege escalation from Windows 7 to Windows 10 / Server 2019
     * Credit - https://twitter.com/_EthicalChaos_
     * Link - https://github.com/CCob/SweetPotato
+6. AtYourService - Queries all services on a host and filters out services running as LocalSystem, NT Authority\LocalService, and NT Authority\NetworkService
+    * Credit - https://twitter.com/midi_v2
+    * Link - https://github.com/mitchmoser/AtYourService
 
 ### Defense Evasion
 1. SharpCradle - download and execute .NET binaries into memory.
@@ -120,6 +104,21 @@ NOTE: this will error for some solutions and still a work in progress!
 10. SharpWifiGrabber - Sharp Wifi Password Grabber retrieves in clear-text the Wi-Fi Passwords from all WLAN Profiles saved on a workstation using native win32 API.
     * Credit - https://twitter.com/r3n_hat
     * Link - https://github.com/r3nhat/SharpWifiGrabber
+11. SharpHandler - tool for stealing/duping handles to LSASS
+    * Credit - https://twitter.com/Jean_Maes_1994
+    * Link - https://github.com/jfmaes/SharpHandler
+12. SharpLAPS - etrieve the LAPS password from the Active Directory for accounts with ExtendedRight or Generic All Rights
+    * Credit - https://twitter.com/pentest_swissky
+    * Link - https://github.com/swisskyrepo/SharpLAPS
+13. BetterSafetyKatz - modified fork of SafetyKatz dynamically fetches the latest pre-compiled release of Mimikatz directly from the gentilkiwi GitHub repo, runtime patching on detected signatures and uses SharpSploit DInvoke to get it into memory.
+    * Credit - https://twitter.com/Flangvik
+    * Link - https://github.com/Flangvik/BetterSafetyKatz
+14. SharpKatz - Porting of mimikatz sekurlsa::logonpasswords, sekurlsa::ekeys and lsadump::dcsync commands
+    * Credit - https://twitter.com/b4rtik
+    * Link - https://github.com/b4rtik/SharpKatz
+15. SharpMiniDump - Create a minidump of the LSASS process from memory (Windows 10 - Windows Server 2016). The entire process uses: dynamic API calls, direct syscall and Native API unhooking to evade the AV / EDR detection.
+    * Credit - https://twitter.com/b4rtik
+    * Link - https://github.com/b4rtik/SharpMiniDump
 
 ### Discovery
 1. SharpHound -  Uses graph theory to reveal the hidden and often unintended relationships within an Active Directory environment, executes collection options necessary to populate the backend BloodHound database. 
@@ -179,8 +178,31 @@ NOTE: this will error for some solutions and still a work in progress!
 19. SharpMapExec - A sharpen version of CrackMapExec. 
     * Credit - Cube0x0 https://twitter.com/cube0x0
     * Link - https://github.com/cube0x0/SharpMapExec
+20. SharpSMBSpray - Spray a hash via smb to check for local administrator access.
+    * Credit - rvrsh3ll https://twitter.com/424f424f
+    * Link - https://github.com/rvrsh3ll/SharpSMBSpray
+21. SauronEye - Search tool find specific files containing specific keywords (.doc, .docx, .xls, .xlsx)
+    * Credit - https://twitter.com/_vivami
+    * Link - https://github.com/vivami/SauronEye
+22. SharpShare - Multithreaded C# .NET Assembly to enumerate accessible network shares in a domain (Updated version)
+    * Credit - https://twitter.com/midi_v2
+    * Link - https://github.com/mitchmoser/SharpShares
+23. SharpLDAP - C# .NET Assembly to perform LDAP Queries
+    * Credit - https://twitter.com/midi_v2
+    * Link - https://github.com/mitchmoser/SharpLDAPSearch
+24. ADCollector - a lightweight tool that enumerates the Active Directory environment to identify possible attack vectors.
+   * Credit - https://twitter.com/dev2nulI
+   * Link - https://github.com/dev-2null/ADCollector
+25. StandIn -  small AD post-compromise toolkit
+   * Credit - https://twitter.com/FuzzySec
+   * Link - https://github.com/FuzzySecurity/StandIn
+26. TruffleSnout - iterative AD discovery toolkit for offensive operators
+   * Credit - https://twitter.com/dsnezhkov
+   * Link - https://github.com/dsnezhkov/TruffleSnout
+27. ThunderFox - Retrieves data (contacts, emails, history, cookies and credentials) from Thunderbird and Firefox
+   * Credit - https://twitter.com/_theVIVI
+   * Link - https://github.com/V1V1/SharpScribbles
    
-
 ### Lateral Movement
 1. SharpCom -  port of Invoke-DCOM, Execute's commands via various DCOM methods as demonstrated by (@enigma0x3)
    * Credit - https://twitter.com/424f424f
@@ -200,6 +222,16 @@ NOTE: this will error for some solutions and still a work in progress!
 6. SCShell - fileless lateral movement tool that relies on ChangeServiceConfigA to run commands.
     * Credit - https://twitter.com/MrUn1k0d3r
     * Link - https://github.com/Mr-Un1k0d3r/SCShell
+7. SharpSphere - gives red teamers the ability to easily interact with the guest operating systems of virtual machines managed by vCenter. 
+    * Credit - https://twitter.com/jkcoote
+    * Link - https://github.com/JamesCooteUK/SharpSphere
+8. Sharp-SMBExec - A native C# conversion of Kevin Robertsons Invoke-SMBExec powershell script
+    * Credit - https://twitter.com/checkymander
+    * Link - https://github.com/checkymander/Sharp-SMBExec
+9. SharpNoPSExec- File less command execution for lateral movement.
+    * Credit - https://twitter.com/juliourena
+    * Link - https://github.com/juliourena/SharpNoPSExec
+    
 
 ### Exfiltration
 1. SharpBox - Tool for compressing, encrypting, and exfiltrating data to DropBox using the DropBox API.
@@ -216,5 +248,9 @@ NOTE: this will error for some solutions and still a work in progress!
 1. OffensiveCSharp - Collection of Offensive C# Tooling
    * Credit - https://twitter.com/matterpreter
    * Link - https://github.com/matterpreter/OffensiveCSharp
+2. SharpAllowedToAct - implementation of a computer object takeover through Resource-Based Constrained Delegation (msDS-AllowedToActOnBehalfOfOtherIdentity)
+   * Credit - https://twitter.com/pkb1s
+   * Link - https://github.com/pkb1s/SharpAllowedToAct
+
    
 
