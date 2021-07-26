@@ -1,0 +1,6 @@
+[submodule "submodules/SharpWMI"]
+	path = submodules/SharpWMI
+	url = https://github.com/GhostPack/SharpWMI
+[submodule "submodules/SharpGPOAbuse"]
+	path = submodules/SharpGPOAbuse
+	url = https://github.com/FSecureLABS/SharpGPOAbuse

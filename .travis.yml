@@ -1,0 +1,34 @@
+# Travis CI configuration for coverage testing
+
+# https://docs.travis-ci.com/user/reference/windows/
+os: windows
+language: shell
+env:
+  - MSBUILD='C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe'
+
+before_install:
+  # https://en.wikipedia.org/wiki/MSBuild
+  # https://community.chocolatey.org/packages
+  - choco install visualstudio2019buildtools
+  # - > choco install visualstudio2019buildtools
+  #     --package-parameters
+  #     "--allWorkloads
+  #     --includeRecommended
+  #     --includeOptional
+  #     --passive
+  #     --locale en-US"
+  -  ${MSBUILD} /version
+  # https://git-scm.com/book/en/v2/Git-Tools-Submodules
+
+install:
+  - git submodule update --init --recursive
+  - git status
+
+# Build steps
+script:
+  - cd ${TRAVIS_BUILD_DIR}
+  # - git submodule foreach '${MSBUILD} *.sln /Build "Release|Any CPU"'
+
+# after_success:
+#   - cd ${TRAVIS_BUILD_DIR}
+#   - echo "Automated build and testing completed!"
