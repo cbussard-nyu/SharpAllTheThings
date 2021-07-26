@@ -7,7 +7,9 @@ language: shell
 # https://en.wikipedia.org/wiki/MSBuild
 before_install:
   # https://community.chocolatey.org/packages/DotNet3.5
-  - choco install dotnet3.5
+  # - choco install dotnet3.5
+  # https://community.chocolatey.org/packages/Dogtail.DotNet3.5SP1
+  - choco install dogtail.dotnet3.5sp1
   # https://community.chocolatey.org/packages/dotnet4.7.2
   - choco install dotnet4.7.2
   # https://community.chocolatey.org/packages
@@ -25,7 +27,7 @@ install:
 # Build all the things!
 script:
   - cd ${TRAVIS_BUILD_DIR}
-  - git submodule foreach 'MSBuild.exe *.sln -target:Build -verbosity:detailed'
+  - git submodule foreach 'MSBuild.exe *.sln -target:Build || 0'
 
 # after_success:
 #   - cd ${TRAVIS_BUILD_DIR}
