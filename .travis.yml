@@ -20,17 +20,17 @@ before_install:
   - export PATH='/C/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin':$PATH
   - echo $PATH
   # -  %MSBUILD% /version
-  - msbuild /version
-  # https://git-scm.com/book/en/v2/Git-Tools-Submodules
+  - MSBuild.exe /version
 
 install:
+  # https://git-scm.com/book/en/v2/Git-Tools-Submodules
   - git submodule update --init --recursive
   - git status
 
 # Build steps
 script:
   - cd ${TRAVIS_BUILD_DIR}
-  - git submodule foreach 'msbuild *.sln /Build "Release|Any CPU"'
+  - git submodule foreach 'MSBuild.exe *.sln /Build "Release|Any CPU"'
 
 # after_success:
 #   - cd ${TRAVIS_BUILD_DIR}
