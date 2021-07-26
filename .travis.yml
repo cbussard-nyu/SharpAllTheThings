@@ -3,8 +3,8 @@
 # https://docs.travis-ci.com/user/reference/windows/
 os: windows
 language: shell
-env:
-  - MSBUILD='C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe'
+# env:
+  # - MSBUILD='C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe'
 
 before_install:
   # https://en.wikipedia.org/wiki/MSBuild
@@ -17,8 +17,10 @@ before_install:
   #     --includeOptional
   #     --passive
   #     --locale en-US"
+  - export PATH=/C/program\ files \(x86\)/Microsoft\ Visual\ Studio/2019/BuildTools/MSBuild/Current/Bin:$PATH
+  - echo $PATH
   # -  %MSBUILD% /version
-  - %MSBUILD% /version
+  - msbuild /version
   # https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 install:
@@ -28,7 +30,7 @@ install:
 # Build steps
 script:
   - cd ${TRAVIS_BUILD_DIR}
-  - git submodule foreach '%MSBUILD% *.sln /Build "Release|Any CPU"'
+  - git submodule foreach 'msbuild *.sln /Build "Release|Any CPU"'
 
 # after_success:
 #   - cd ${TRAVIS_BUILD_DIR}
