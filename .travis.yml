@@ -17,7 +17,8 @@ before_install:
   #     --includeOptional
   #     --passive
   #     --locale en-US"
-  -  ${MSBUILD} /version
+  # -  %MSBUILD% /version
+  - %MSBUILD% /version
   # https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 install:
@@ -27,7 +28,7 @@ install:
 # Build steps
 script:
   - cd ${TRAVIS_BUILD_DIR}
-  # - git submodule foreach '${MSBUILD} *.sln /Build "Release|Any CPU"'
+  - git submodule foreach '%MSBUILD% *.sln /Build "Release|Any CPU"'
 
 # after_success:
 #   - cd ${TRAVIS_BUILD_DIR}
