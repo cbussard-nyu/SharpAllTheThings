@@ -6,6 +6,8 @@ language: shell
 
 # https://en.wikipedia.org/wiki/MSBuild
 before_install:
+  # https://community.chocolatey.org/packages/DotNet3.5
+  - choco install dotnet3.5
   # https://community.chocolatey.org/packages/dotnet4.7.2
   - choco install dotnet4.7.2
   # https://community.chocolatey.org/packages
