@@ -3,34 +3,27 @@
 # https://docs.travis-ci.com/user/reference/windows/
 os: windows
 language: shell
-# env:
-  # - MSBUILD='C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\MSBuild.exe'
 
+# https://en.wikipedia.org/wiki/MSBuild
 before_install:
-  # https://en.wikipedia.org/wiki/MSBuild
+  # https://community.chocolatey.org/packages/dotnet4.7.2
+  - choco install dotnet4.7.2
   # https://community.chocolatey.org/packages
   - choco install visualstudio2019buildtools
-  # - > choco install visualstudio2019buildtools
-  #     --package-parameters
-  #     "--allWorkloads
-  #     --includeRecommended
-  #     --includeOptional
-  #     --passive
-  #     --locale en-US"
   - export PATH='/C/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin':$PATH
   - echo $PATH
-  # -  %MSBUILD% /version
-  - MSBuild.exe //version
+  - MSBuild.exe -version
 
+# Update all the things!
 install:
   # https://git-scm.com/book/en/v2/Git-Tools-Submodules
   - git submodule update --init --recursive
   - git status
 
-# Build steps
+# Build all the things!
 script:
   - cd ${TRAVIS_BUILD_DIR}
-  - git submodule foreach 'MSBuild.exe *.sln -target:Build'
+  - git submodule foreach 'MSBuild.exe *.sln -target:Build -verbosity:detailed'
 
 # after_success:
 #   - cd ${TRAVIS_BUILD_DIR}
